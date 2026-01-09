@@ -36,6 +36,7 @@ export default function QuickMode({ onGenerate, onEditInStandard, currentData: _
         if (!input.trim()) return;
         setLoading(true);
         setGeneratedPrompt(''); // Clear previous result
+        setRawJson(null); // Hide previous structure
 
         try {
             const res = await fetch('/api/generate', {
@@ -82,7 +83,7 @@ export default function QuickMode({ onGenerate, onEditInStandard, currentData: _
                     const data = JSON.parse(jsonString); // This is now just the metadata
 
                     // Client-side prompt assembly
-                    const assembledPrompt = buildPrompt(data, 'midjourney'); // Defaulting to MJ or making it generic
+                    const assembledPrompt = buildPrompt(data, 'midjourney', language); // Defaulting to MJ or making it generic
 
                     setGeneratedPrompt(assembledPrompt);
                     setRawJson(data);

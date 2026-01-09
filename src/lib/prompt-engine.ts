@@ -1,12 +1,12 @@
 import { PromptStructure, Platform } from './types';
 
-export function buildPrompt(data: PromptStructure, platform: Platform): string {
+export function buildPrompt(data: PromptStructure, platform: Platform, language: 'chinese' | 'english' = 'english'): string {
     const core = [
+        data.environment,
         data.subject,
         data.action,
-        data.environment,
-        data.theme,
-        data.style
+        data.style,
+        data.theme
     ].map(s => s?.trim()).filter((s): s is string => !!s);
 
     const modifiers = [
@@ -32,7 +32,8 @@ export function buildPrompt(data: PromptStructure, platform: Platform): string {
             const lastChar = prev.slice(-1);
             // If previous part ends with punctuation (English or Chinese), just add space. Otherwise add comma space.
             // Includes: , . ; : ! ? and Chinese: ， 。 ； ： ！ ？ 、
-            const separator = /[,.;:!?\u3002\uff0c\u3001\uff1b\uff1a\uff01\uff1f]$/.test(lastChar) ? ' ' : ', ';
+            const comma = language === 'chinese' ? '，' : ', ';
+            const separator = /[,.;:!?\u3002\uff0c\u3001\uff1b\uff1a\uff01\uff1f]$/.test(lastChar) ? ' ' : comma;
             return prev + separator + curr;
         }, '');
     };

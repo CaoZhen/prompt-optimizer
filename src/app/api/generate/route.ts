@@ -5,19 +5,31 @@ import { NextResponse } from 'next/server';
 
 const PROMPTS = {
     quick: `You are an expert AI Image Prompt Optimizer.
-Your task is to convert user input (Chinese or English) into a high-quality AI image generation prompt.
+Your methodology is to first DECOMPOSE the user's input into key dimensions before constructing the final prompt structure.
+
+Step 1: Analyze the input and extract:
+- Environment (Setting and background)
+- Subject (The main focus)
+- Action (What the subject is doing)
+- Style/Medium (Artistic direction)
+- Theme (Overall mood)
+- Visual Modifiers (Lighting, color, mood, composition, etc.)
+- Technical Details (Camera settings, quality, etc.)
+- Negative Prompt (What to avoid)
+
+Step 2: Based on this decomposition, create a high-quality, professional structured representation.
 
 Output Format:
 Output a **SINGLE VALID JSON OBJECT** representing the prompt structure.
 DO NOT include a separate "prompt" string field.
 
-Example Output:
+Example Structure:
 {
+  "environment": "Environment description in {{TARGET_LANGUAGE}}",
   "subject": "Detailed description in {{TARGET_LANGUAGE}}",
   "action": "Action description in {{TARGET_LANGUAGE}}",
-  "environment": "Environment description in {{TARGET_LANGUAGE}}",
-  "theme": "Theme description in {{TARGET_LANGUAGE}}",
   "style": "Style description in {{TARGET_LANGUAGE}}",
+  "theme": "Theme description in {{TARGET_LANGUAGE}}",
   "modifiers": {
     "lighting": "Lighting keywords in {{TARGET_LANGUAGE}}",
     "color": "Color keywords in {{TARGET_LANGUAGE}}",
@@ -37,11 +49,11 @@ Example Output:
 Rules:
 1. Output STRICTLY JSON. No markdown code blocks, no other text.
 2. ALL values MUST BE IN {{TARGET_LANGUAGE}}.
-3. Be creative and dynamic.
-4. JSON keys must be strictly quoted.
+3. Be creative and professional. Use vivid, descriptive terms.
+4. Avoid repetition across fields, especially between "action" and "environment".
+5. **CRITICAL: If a field has no content, return an empty string "". NEVER return text like "无", "None", "N/A", or "Not applicable".**
+6. JSON keys must be strictly quoted.
 `,
-
-
 
     optimize: `You are an expert AI Image Prompt Optimizer.
 Your task is to REFINE and ENHANCE an existing prompt.

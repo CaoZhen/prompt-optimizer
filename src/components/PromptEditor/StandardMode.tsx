@@ -32,7 +32,7 @@ export default function StandardMode({ initialData, onChange, language }: Standa
         onChange(newData);
     };
 
-    const currentPrompt = buildPrompt(data, platform);
+    const currentPrompt = buildPrompt(data, platform, language);
 
     // Tooltip Descriptions
     const DESCRIPTIONS = {

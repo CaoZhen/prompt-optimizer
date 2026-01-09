@@ -13,10 +13,11 @@ import { UI_LABELS, CATEGORY_NAMES } from '@/lib/i18n';
 const DEFAULT_STRUCTURE: PromptStructure = {
     subject: '',
     action: '',
+    spatialRelationship: '',
     environment: '',
     theme: '',
     style: '',
-    modifiers: { lighting: '', color: '', mood: '', composition: '', details: '', effects: '', typography: '' },
+    modifiers: { lighting: '', colorMood: '', composition: '', visualLayers: '', details: '', effects: '', typography: '' },
     technical: { quality: '8k', aspectRatio: '3:4', model: '--v 6.0' },
     negative: ''
 };

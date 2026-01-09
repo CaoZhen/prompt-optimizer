@@ -2,17 +2,18 @@
 export interface PromptStructure {
     subject: string;
     action: string; // New: What is the subject doing?
+    spatialRelationship: string; // New: Interaction and spatial relationship between multiple subjects or between subject and environment
     environment: string;
     theme: string; // New: Core concept/idea
     style: string;
     modifiers: {
         lighting: string;
-        color: string;
-        mood: string;
-        composition: string; // New: Camera angles, framing
+        colorMood: string; // Merged: Color & Mood
+        composition: string; // New: Shot and composition
+        visualLayers: string; // New: Depth and layers
         details: string;
-        effects: string; // New: Lighting effects and textures
-        typography: string; // New: Title and text styles
+        effects: string; // New: Visual effects and texture
+        typography: string; // New: Typography and layout
     };
     technical: {
         camera?: string;

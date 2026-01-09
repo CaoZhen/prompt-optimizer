@@ -32,6 +32,26 @@ export default function QuickMode({ onGenerate, onEditInStandard, currentData: _
             .catch(err => console.error('Env check failed', err));
     }, []);
 
+    const sanitizeStructure = (obj: any): any => {
+        if (!obj || typeof obj !== 'object') return obj;
+
+        const forbidden = ['无', 'none', 'n/a', 'not applicable', 'null', 'undefined'];
+        const result: any = Array.isArray(obj) ? [] : {};
+
+        for (const key in obj) {
+            const val = obj[key];
+            if (typeof val === 'string') {
+                const lowerVal = val.trim().toLowerCase();
+                result[key] = forbidden.includes(lowerVal) ? '' : val;
+            } else if (typeof val === 'object') {
+                result[key] = sanitizeStructure(val);
+            } else {
+                result[key] = val;
+            }
+        }
+        return result;
+    };
+
     const handleDeepSeekGenerate = async () => {
         if (!input.trim()) return;
         setLoading(true);
@@ -80,10 +100,13 @@ export default function QuickMode({ onGenerate, onEditInStandard, currentData: _
 
                 if (firstBrace !== -1 && lastBrace !== -1) {
                     const jsonString = accumulated.substring(firstBrace, lastBrace + 1);
-                    const data = JSON.parse(jsonString); // This is now just the metadata
+                    let data = JSON.parse(jsonString); // This is now just the metadata
+
+                    // Client-side sanitization ensure no "无" etc.
+                    data = sanitizeStructure(data);
 
                     // Client-side prompt assembly
-                    const assembledPrompt = buildPrompt(data, 'midjourney', language); // Defaulting to MJ or making it generic
+                    const assembledPrompt = buildPrompt(data, 'jimeng', language); // Defaulting to MJ or making it generic
 
                     setGeneratedPrompt(assembledPrompt);
                     setRawJson(data);

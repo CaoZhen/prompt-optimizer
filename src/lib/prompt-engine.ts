@@ -1,28 +1,38 @@
 import { PromptStructure, Platform } from './types';
 
+const FORBIDDEN_PLACEHOLDERS = ['无', 'none', 'n/a', 'not applicable'];
+
 export function buildPrompt(data: PromptStructure, platform: Platform, language: 'chinese' | 'english' = 'english'): string {
+    const isClean = (s: string | undefined): s is string => {
+        if (!s) return false;
+        const trimmed = s.trim();
+        if (!trimmed) return false;
+        return !FORBIDDEN_PLACEHOLDERS.includes(trimmed.toLowerCase());
+    };
+
     const core = [
         data.environment,
         data.subject,
         data.action,
+        data.spatialRelationship,
         data.style,
         data.theme
-    ].map(s => s?.trim()).filter((s): s is string => !!s);
+    ].filter(isClean);
 
     const modifiers = [
         data.modifiers?.lighting,
-        data.modifiers?.color,
-        data.modifiers?.mood,
+        data.modifiers?.colorMood,
         data.modifiers?.composition,
+        data.modifiers?.visualLayers,
         data.modifiers?.details,
         data.modifiers?.effects,
         data.modifiers?.typography
-    ].map(s => s?.trim()).filter((s): s is string => !!s);
+    ].filter(isClean);
 
     const technical = [
         data.technical?.camera,
         data.technical?.quality
-    ].map(s => s?.trim()).filter((s): s is string => !!s);
+    ].filter(isClean);
 
     // Helper to join parts without double punctuation
     const smartJoin = (parts: string[]) => {

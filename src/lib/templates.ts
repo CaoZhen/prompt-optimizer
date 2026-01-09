@@ -10,19 +10,19 @@ export const TEMPLATES: Template[] = [
         recommendedPlatform: 'midjourney',
         structure: {
             subject: '一名饱经风霜的探险家',
+            spatialRelationship: "",
             action: '凝视远方，眼神坚毅',
             environment: '模糊的暴风雪背景',
             theme: '勇气与生存',
             style: '电影感人像摄影 (Cinematic Portrait)',
             modifiers: {
                 lighting: '伦勃朗光，戏剧性阴影',
-                // Strategy merged below
-                mood: '史诗，沉重',
+                visualLayers: "",
                 composition: '面部特写 (Close-up)，浅景深',
                 details: '面部纹理清晰，胡茬，雪花落在睫毛上',
                 effects: '胶片颗粒，辉光',
                 typography: '',
-                color: '冷色调，低饱和度。冷钢蓝与暗灰 (Steel Blue & Dark Grey)'
+                colorMood: '冷色调，低饱和度。冷钢蓝与暗灰 (Steel Blue & Dark Grey)'
             },
             technical: {
                 camera: '85mm f/1.2 lens',
@@ -41,19 +41,19 @@ export const TEMPLATES: Template[] = [
         recommendedPlatform: 'midjourney',
         structure: {
             subject: '赛博风格的猫耳少女黑客',
+            spatialRelationship: "",
             action: '漂浮在空中，操控全息键盘',
             environment: '简单的科技感几何背景',
             theme: '未来科技',
             style: '日系二次元厚涂 (Anime Impasto)',
             modifiers: {
                 lighting: '轮廓光，霓虹发光',
-                // Strategy merged below
-                mood: '酷炫，充满活力',
+                visualLayers: "",
                 composition: '全身立绘 (Full Body)，动态姿势',
                 details: '半透明机械义肢，全息数据流',
                 effects: '流动的数据光效',
                 typography: '',
-                color: '赛博霓虹色 (Neon Colors)。品红与青色 (Magenta & Cyan)'
+                colorMood: '赛博霓虹色 (Neon Colors)。品红与青色 (Magenta & Cyan)'
             },
             technical: {
                 quality: 'best quality, illustration, detailed',
@@ -71,19 +71,19 @@ export const TEMPLATES: Template[] = [
         recommendedPlatform: 'midjourney',
         structure: {
             subject: '奇幻骑士角色',
+            spatialRelationship: "",
             action: '展示正视图、侧视图、背视图',
             environment: '纯色中性背景 (Neutral Background)',
             theme: '角色设定集 (Character Sheet)',
             style: '概念艺术 (Concept Art)',
             modifiers: {
                 lighting: '平光，无阴影干扰',
-                // Strategy merged below
-                mood: '专业，详尽',
+                visualLayers: "",
                 composition: '三视图并排 (Three views)，全身',
                 details: '盔甲细节，武器设定拆解',
                 effects: '',
                 typography: '标注设计细节',
-                color: '清晰的固有色。金属银与皇家蓝 (Silver & Royal Blue)'
+                colorMood: '清晰的固有色。金属银与皇家蓝 (Silver & Royal Blue)'
             },
             technical: {
                 quality: 'design sheet, reference'
@@ -99,19 +99,19 @@ export const TEMPLATES: Template[] = [
         recommendedPlatform: 'midjourney',
         structure: {
             subject: '一位穿着牛仔外套的卷发青年',
+            spatialRelationship: "",
             action: '靠在旧车旁，手持可乐',
             environment: '90年代美国街头，夕阳',
             theme: '怀旧青春',
             style: '复古胶片摄影 (Vintage Film Photography)',
             modifiers: {
                 lighting: '暖黄夕阳，漏光效果 (Light Leaks)',
-                // Strategy merged below
-                mood: '怀旧，温暖',
+                visualLayers: "",
                 composition: '中景 (Medium Shot)',
                 details: '噪点，褪色感',
                 effects: '胶片划痕，光晕',
                 typography: '',
-                color: '柯达胶片色调 (Kodak Portra)。暖黄与复古红 (Warm Yellow & Vintage Red)'
+                colorMood: '柯达胶片色调 (Kodak Portra)。暖黄与复古红 (Warm Yellow & Vintage Red)'
             },
             technical: {
                 camera: '35mm film camera',
@@ -128,19 +128,19 @@ export const TEMPLATES: Template[] = [
         recommendedPlatform: 'midjourney',
         structure: {
             subject: '森林精灵弓箭手',
+            spatialRelationship: "",
             action: '警觉地聆听',
             environment: '发光的魔法森林',
             theme: '自然与魔法',
             style: 'CG 渲染，超写实',
             modifiers: {
                 lighting: '生物荧光，点光',
-                // Strategy merged below
-                mood: '神秘，灵动',
+                visualLayers: "",
                 composition: '极度特写 (Extreme Close-up)',
                 details: '尖耳朵，树叶状皮肤纹理，发光瞳孔',
                 effects: '飘浮的孢子',
                 typography: '',
-                color: '翠绿与金。森林绿与荧光蓝 (Forest Green & Bioluminescent Blue)'
+                colorMood: '翠绿与金。森林绿与荧光蓝 (Forest Green & Bioluminescent Blue)'
             },
             technical: {
                 quality: 'unreal engine 5, 8k',
@@ -159,19 +159,19 @@ export const TEMPLATES: Template[] = [
         recommendedPlatform: 'midjourney',
         structure: {
             subject: '古老的巨型遗迹',
+            spatialRelationship: "",
             action: '屹立在荒漠之中',
             environment: '无垠的沙漠，巨大的星球悬挂在天边',
             theme: '渺小与宏大',
             style: 'IMAX 电影摄影 (IMAX Cinematography)',
             modifiers: {
                 lighting: '黄金时刻，长阴影',
-                // Strategy merged below
-                mood: '史诗，苍凉',
+                visualLayers: "",
                 composition: '超广角 (Ultra Wide Angle)，极宽画幅',
                 details: '微小的探险队作为比例尺',
                 effects: '沙尘暴，热浪扭曲',
                 typography: '电影标题 "DUNE"',
-                color: '橙黄与青蓝对比 (Orange & Teal)。沙黄与天空蓝 (Sand & Sky)'
+                colorMood: '橙黄与青蓝对比 (Orange & Teal)。沙黄与天空蓝 (Sand & Sky)'
             },
             technical: {
                 aspectRatio: '21:9',
@@ -188,19 +188,19 @@ export const TEMPLATES: Template[] = [
         recommendedPlatform: 'midjourney',
         structure: {
             subject: '山坡上的小木屋',
+            spatialRelationship: "",
             action: '静静伫立',
             environment: '开满野花的山坡，远处的雪山，蓝天白云',
             theme: '宁静与治愈',
             style: '宫崎骏动画背景风格 (Ghibli Background Art)',
             modifiers: {
                 lighting: '明亮的日光，透彻',
-                // Strategy merged below
-                mood: '放松，快乐',
+                visualLayers: "",
                 composition: '全景 (Panorama)',
                 details: '摇曳的草，飞鸟',
                 effects: '微风感，云影',
                 typography: '',
-                color: '清新绿，天蓝。草绿与天蓝 (Fresh Green & Sky Blue)'
+                colorMood: '清新绿，天蓝。草绿与天蓝 (Fresh Green & Sky Blue)'
             },
             technical: {
                 aspectRatio: '16:9',
@@ -218,19 +218,19 @@ export const TEMPLATES: Template[] = [
         recommendedPlatform: 'midjourney',
         structure: {
             subject: '雨夜的未来都市街道',
+            spatialRelationship: "",
             action: '飞行汽车穿梭',
             environment: '高耸入云的摩天大楼，全息广告牌',
             theme: '高科技低生活 (High Tech Low Life)',
             style: '赛博朋克概念艺术 (Cyberpunk Concept Art)',
             modifiers: {
                 lighting: '各种霓虹灯光，反射',
-                // Strategy merged below
-                mood: '迷幻，危险',
+                visualLayers: "",
                 composition: '仰视镜头 (Low Angle)，强调建筑高度',
                 details: '湿漉漉的地面反射，蒸汽',
                 effects: '雨丝，故障艺术效果 (Glitch)',
                 typography: '汉字霓虹招牌',
-                color: '赛博朋克色板 (Cyberpunk Palette)。紫罗兰与激光红 (Violet & Laser Red)'
+                colorMood: '赛博朋克色板 (Cyberpunk Palette)。紫罗兰与激光红 (Violet & Laser Red)'
             },
             technical: {
                 quality: 'ray tracing, octane render'
@@ -246,19 +246,19 @@ export const TEMPLATES: Template[] = [
         recommendedPlatform: 'midjourney',
         structure: {
             subject: '漂浮的天空岛屿',
+            spatialRelationship: "",
             action: '瀑布从边缘倾泻而下',
             environment: '云海之上，巨大的彩虹',
             theme: '探索未知',
             style: '幻想插画 (Fantasy Illustration)',
             modifiers: {
                 lighting: '梦幻柔光',
-                // Strategy merged below
-                mood: '梦幻，宏伟',
+                visualLayers: "",
                 composition: '鸟瞰视角 (Aerial View)',
                 details: '飞龙，古老的神庙',
                 effects: '云雾缭绕，魔法光尘',
                 typography: '',
-                color: '粉紫色的云彩。梦幻粉与蓝 (Pastel Pink & Blue)'
+                colorMood: '粉紫色的云彩。梦幻粉与蓝 (Pastel Pink & Blue)'
             },
             technical: {
                 aspectRatio: '16:9',
@@ -275,19 +275,19 @@ export const TEMPLATES: Template[] = [
         recommendedPlatform: 'midjourney',
         structure: {
             subject: '现代极简客厅',
+            spatialRelationship: "",
             action: '',
             environment: '落地窗，透过窗户看到森林',
             theme: '舒适与格调',
             style: '建筑可视化渲染 (ArchViz)',
             modifiers: {
                 lighting: '漫射自然光，柔和',
-                // Strategy merged below
-                mood: '温馨，高级',
+                visualLayers: "",
                 composition: '一点透视 (One-point Perspective)',
                 details: '设计师家具，大理石纹理',
                 effects: '极简',
                 typography: '',
-                color: '米色与原木色 (Beige & Wood)。温暖中性色 (Warm Neutrals)'
+                colorMood: '米色与原木色 (Beige & Wood)。温暖中性色 (Warm Neutrals)'
             },
             technical: {
                 quality: 'photorealistic, 8k, interior design'
@@ -305,19 +305,19 @@ export const TEMPLATES: Template[] = [
         recommendedPlatform: 'midjourney',
         structure: {
             subject: '新款运动鞋',
+            spatialRelationship: "",
             action: '悬浮在空中，正在解体或组装',
             environment: '动态的几何背景',
             theme: '速度与创新',
             style: '商业广告设计 (Commercial Advertisement)',
             modifiers: {
                 lighting: '高调摄影，边缘光',
-                // Strategy merged below
-                mood: '动感，现代',
+                visualLayers: "",
                 composition: '中心构图，留白给文案',
                 details: '鞋带飞舞，材质细节',
                 effects: '速度线，爆炸效果',
                 typography: '预留标题位置',
-                color: '品牌主色调。活力橙与黑 (Energetic Orange & Black)'
+                colorMood: '品牌主色调。活力橙与黑 (Energetic Orange & Black)'
             },
             technical: {
                 aspectRatio: '3:4',
@@ -334,19 +334,19 @@ export const TEMPLATES: Template[] = [
         recommendedPlatform: 'midjourney',
         structure: {
             subject: '未来的透明智能手机',
+            spatialRelationship: "",
             action: '展示正反面',
             environment: '深色极简背景',
             theme: '极简未来主义',
             style: '工业设计渲染 (Industrial Design Render)',
             modifiers: {
                 lighting: '演播室灯光，反射光',
-                // Strategy merged below
-                mood: '科技，精密',
+                visualLayers: "",
                 composition: '45度角展示',
                 details: '内部芯片结构隐约可见',
                 effects: '焦散，光泽',
                 typography: '',
-                color: '玻璃质感，金属色。银白与通透 (Silver & Transparent)'
+                colorMood: '玻璃质感，金属色。银白与通透 (Silver & Transparent)'
             },
             technical: {
                 quality: 'keyshot, blender, octane'
@@ -362,19 +362,19 @@ export const TEMPLATES: Template[] = [
         recommendedPlatform: 'midjourney',
         structure: {
             subject: '一个孤独的几何图形（圆或方）',
+            spatialRelationship: "",
             action: '漂浮在虚空中',
             environment: '大面积留白',
             theme: '哲学与思考',
             style: '极简平面设计 (Minimalist Graphic Design)',
             modifiers: {
                 lighting: '平光',
-                // Strategy merged below
-                mood: '安静，内省',
+                visualLayers: "",
                 composition: '极简构图，负空间',
                 details: '纸张纹理',
                 effects: '微妙的阴影',
                 typography: '优雅的衬线体标题',
-                color: '单色或双色搭配。克莱因蓝与白 (Klein Blue & White)'
+                colorMood: '单色或双色搭配。克莱因蓝与白 (Klein Blue & White)'
             },
             technical: {
                 aspectRatio: '2:3',
@@ -391,19 +391,19 @@ export const TEMPLATES: Template[] = [
         recommendedPlatform: 'midjourney',
         structure: {
             subject: '整套丝绸睡衣与配饰',
+            spatialRelationship: "",
             action: '艺术地摆放在平面上',
             environment: '大理石台面或丝绒布背景',
             theme: '奢华生活',
             style: '时尚平拍 (Fashion Flat Lay)',
             modifiers: {
                 lighting: '柔光箱，无阴影',
-                // Strategy merged below
-                mood: '优雅，精致',
+                visualLayers: "",
                 composition: '俯视全景 (Top Down View)',
                 details: '布料褶皱，金属光泽',
                 effects: '',
                 typography: '',
-                color: '柔和的高级灰。香槟金与珍珠白 (Champagne & Pearl)'
+                colorMood: '柔和的高级灰。香槟金与珍珠白 (Champagne & Pearl)'
             },
             technical: {
                 camera: '50mm',
@@ -420,19 +420,19 @@ export const TEMPLATES: Template[] = [
         recommendedPlatform: 'midjourney',
         structure: {
             subject: '无线降噪耳机',
+            spatialRelationship: "",
             action: '悬浮展示',
             environment: '纯白背景 (Pure White Background)',
             theme: '电商主图',
             style: '电商产品摄影 (E-commerce Photography)',
             modifiers: {
                 lighting: '通透的布光，强调质感',
-                // Strategy merged below
-                mood: '干净，信赖',
+                visualLayers: "",
                 composition: '居中，完整展示',
                 details: '高光，材质纹理',
                 effects: '无杂质',
                 typography: '',
-                color: '白色与产品本色。黑与白 (Black & White)'
+                colorMood: '白色与产品本色。黑与白 (Black & White)'
             },
             technical: {
                 aspectRatio: '1:1',
@@ -451,19 +451,19 @@ export const TEMPLATES: Template[] = [
         recommendedPlatform: 'midjourney',
         structure: {
             subject: '一叶扁舟',
+            spatialRelationship: "",
             action: '行驶在烟雨江南',
             environment: '层叠的远山，留白的江水',
             theme: '禅意与自然',
             style: '中国水墨画 (Chinese Ink Wash Painting)',
             modifiers: {
                 lighting: '散点透视，无特定光源',
-                // Strategy merged below
-                mood: '空灵，悠远',
+                visualLayers: "",
                 composition: '留白 (Negative Space)，气韵生动',
                 details: '墨色的晕染，笔触',
                 effects: '宣纸纹理',
                 typography: '书法落款',
-                color: '黑白灰与朱砂红点缀。墨黑与朱红 (Ink Black & Cinnabar)'
+                colorMood: '黑白灰与朱砂红点缀。墨黑与朱红 (Ink Black & Cinnabar)'
             },
             technical: {
                 model: '--niji 6',
@@ -480,19 +480,19 @@ export const TEMPLATES: Template[] = [
         recommendedPlatform: 'midjourney',
         structure: {
             subject: '复古宇航员',
+            spatialRelationship: "",
             action: '在异星探索',
             environment: '巨大的外星植物，双月同天',
             theme: '黄金时代科幻',
             style: '复古科幻插画 (Retro Sci-Fi Illustration)',
             modifiers: {
                 lighting: '鲜艳的色彩，高饱和',
-                // Strategy merged below
-                mood: '奇幻，探索',
+                visualLayers: "",
                 composition: '充满画面',
                 details: '喷枪质感 (Airbrush)',
                 effects: '老旧纸张纹理',
                 typography: '',
-                color: '复古色调。复古橙与青 (Retro Orange & Teal)'
+                colorMood: '复古色调。复古橙与青 (Retro Orange & Teal)'
             },
             technical: {
                 quality: 'detailed'
@@ -508,19 +508,19 @@ export const TEMPLATES: Template[] = [
         recommendedPlatform: 'midjourney',
         structure: {
             subject: '充满了魔法道具的小房间',
+            spatialRelationship: "",
             action: '阳光洒在桌面上',
             environment: '温馨杂乱的魔法工坊',
             theme: '童话与生活',
             style: '吉卜力工作室风格 (Studio Ghibli Style)',
             modifiers: {
                 lighting: '美丽的自然光，透视',
-                // Strategy merged below
-                mood: '温馨，宁静',
+                visualLayers: "",
                 composition: '充满生活气息的细节',
                 details: '细腻的手绘线条',
                 effects: '水彩笔触',
                 typography: '',
-                color: '丰富的水彩质感。水彩系 (Watercolors)'
+                colorMood: '丰富的水彩质感。水彩系 (Watercolors)'
             },
             technical: {
                 model: '--niji 6',
@@ -537,19 +537,19 @@ export const TEMPLATES: Template[] = [
         recommendedPlatform: 'midjourney',
         structure: {
             subject: '赛博朋克街机厅',
+            spatialRelationship: "",
             action: '闪烁的屏幕',
             environment: '昏暗的街道角落',
             theme: '复古游戏',
             style: '像素艺术 (Pixel Art)',
             modifiers: {
                 lighting: '像素化的光影',
-                // Strategy merged below
-                mood: '怀旧，电子',
+                visualLayers: "",
                 composition: '等轴测视角 (Isometric)',
                 details: '方块感',
                 effects: '抖动 (Dithering)',
                 typography: '像素字体',
-                color: '有限色盘 (Limited Palette)。霓虹像素 (Neon Pixel)'
+                colorMood: '有限色盘 (Limited Palette)。霓虹像素 (Neon Pixel)'
             },
             technical: {
                 quality: '8-bit, 16-bit'
@@ -565,19 +565,19 @@ export const TEMPLATES: Template[] = [
         recommendedPlatform: 'midjourney',
         structure: {
             subject: '堕落天使雕像',
+            spatialRelationship: "",
             action: '痛苦地挣扎',
             environment: '虚无的黑暗',
             theme: '痛苦与救赎',
             style: '暗黑神话 (Dark Fantasy), 雕塑摄影',
             modifiers: {
                 lighting: '顶光，强烈的明暗对比 (Chiaroscuro)',
-                // Strategy merged below
-                mood: '压抑，神圣',
+                visualLayers: "",
                 composition: '庄严，对称',
                 details: '大理石纹理，破碎的翅膀',
                 effects: '烟雾',
                 typography: '',
-                color: '单色，从黑到白。黑曜石与大理石 (Obsidian & Marble)'
+                colorMood: '单色，从黑到白。黑曜石与大理石 (Obsidian & Marble)'
             },
             technical: {
                 camera: 'telephoto',

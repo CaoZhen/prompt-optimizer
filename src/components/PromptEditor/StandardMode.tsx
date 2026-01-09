@@ -44,6 +44,10 @@ export default function StandardMode({ initialData, onChange, language }: Standa
             cn: "主体正在做什么？描述动作、姿态或状态。",
             en: "What is the subject doing? Pose, action, or state."
         },
+        spatialRelationship: {
+            cn: "多个主体之间或主体与环境之间的互动、空间距离和层次关系。",
+            en: "The interaction, spatial distance, and layers between multiple subjects or between subject and environment."
+        },
         environment: {
             cn: "主体所处的环境、背景或地点。",
             en: "Where is the scene taking place? Background or setting."
@@ -61,28 +65,28 @@ export default function StandardMode({ initialData, onChange, language }: Standa
             en: "Direction, quality, and mood of lighting."
         },
         effects: {
-            cn: "特殊的视觉特效或纹理质感（如：丁达尔效应、胶片颗粒）。",
+            cn: "视觉特效或纹理质感（如：丁达尔效应、胶片颗粒、粗糙纹理）。",
             en: "Visual effects, particles, or textures."
         },
-        color: {
-            cn: "主要的配色方案或色调策略（如：互补色、冷色调）。",
-            en: "Color palette or tonal strategy."
-        },
-        mood: {
-            cn: "画面传达的情绪（如：神秘、快乐、压抑）。",
-            en: "Emotional atmosphere of the image."
+        colorMood: {
+            cn: "画面的配色方案与整体氛围（如：冷色调、神秘、欢快）。",
+            en: "Color palette and emotional atmosphere."
         },
         composition: {
-            cn: "镜头的角度、距离、景深和布局（如：特写、俯视、三分法）。",
-            en: "Camera angle, framing, depth of field, and layout."
+            cn: "镜头的角度、距离、焦距和构图布局（如：特写、俯视、黄金分割）。",
+            en: "Camera angle, shot type, focal length, and composition layout."
+        },
+        visualLayers: {
+            cn: "画面的前后层次、纵深感与遮挡关系（如：前景虚化、延伸的纵深）。",
+            en: "Depth, layers, and foreground/background relationships."
         },
         typography: {
-            cn: "画面中的文字设计、标题风格或排版。",
-            en: "Text style, fonts, or title placement."
+            cn: "文字的字体、排版格式与布局策略（如：无衬线、底部居中排布）。",
+            en: "Fonts, typography styles, and layout arrangement."
         },
         details: {
-            cn: "补充的细节描述或主体间的互动。",
-            en: "Additional small details or interactions."
+            cn: "补充的细节描述。",
+            en: "Additional small details."
         },
         quality: {
             cn: "画面质量相关的提示词（如：8k, masterpiece, best quality）。",
@@ -147,6 +151,7 @@ export default function StandardMode({ initialData, onChange, language }: Standa
                     <div className="space-y-4">
                         <InputField label={FIELD_LABELS.subject[language]} value={data.subject} onChange={(v) => updateField('subject', '', v)} placeholder={PLACEHOLDERS.subject[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.subject.cn : DESCRIPTIONS.subject.en} />
                         <InputField label={FIELD_LABELS.action[language]} value={data.action || ''} onChange={(v) => updateField('action', '', v)} placeholder={PLACEHOLDERS.action[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.action.cn : DESCRIPTIONS.action.en} />
+                        <InputField label={FIELD_LABELS.spatialRelationship[language]} value={data.spatialRelationship || ''} onChange={(v) => updateField('spatialRelationship', '', v)} placeholder={PLACEHOLDERS.spatialRelationship[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.spatialRelationship.cn : DESCRIPTIONS.spatialRelationship.en} />
                         <InputField label={FIELD_LABELS.environment[language]} value={data.environment} onChange={(v) => updateField('environment', '', v)} placeholder={PLACEHOLDERS.environment[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.environment.cn : DESCRIPTIONS.environment.en} />
                         <InputField label={FIELD_LABELS.theme[language]} value={data.theme || ''} onChange={(v) => updateField('theme', '', v)} placeholder={PLACEHOLDERS.theme[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.theme.cn : DESCRIPTIONS.theme.en} />
                     </div>
@@ -159,9 +164,9 @@ export default function StandardMode({ initialData, onChange, language }: Standa
                         <InputField label={FIELD_LABELS.style[language]} value={data.style} onChange={(v) => updateField('style', '', v)} placeholder={PLACEHOLDERS.style[language]} isTextArea className="md:col-span-2" description={language === 'chinese' ? DESCRIPTIONS.style.cn : DESCRIPTIONS.style.en} />
                         <InputField label={FIELD_LABELS.lighting[language]} value={data.modifiers?.lighting || ''} onChange={(v) => updateField('modifiers', 'lighting', v)} placeholder={PLACEHOLDERS.lighting[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.lighting.cn : DESCRIPTIONS.lighting.en} />
                         <InputField label={FIELD_LABELS.effects[language]} value={data.modifiers?.effects || ''} onChange={(v) => updateField('modifiers', 'effects', v)} placeholder={PLACEHOLDERS.effects[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.effects.cn : DESCRIPTIONS.effects.en} />
-                        <InputField label={FIELD_LABELS.color[language]} value={data.modifiers?.color || ''} onChange={(v) => updateField('modifiers', 'color', v)} placeholder={PLACEHOLDERS.color[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.color.cn : DESCRIPTIONS.color.en} />
-                        <InputField label={FIELD_LABELS.mood[language]} value={data.modifiers?.mood || ''} onChange={(v) => updateField('modifiers', 'mood', v)} placeholder={PLACEHOLDERS.mood[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.mood.cn : DESCRIPTIONS.mood.en} />
+                        <InputField label={FIELD_LABELS.colorMood[language]} value={data.modifiers?.colorMood || ''} onChange={(v) => updateField('modifiers', 'colorMood', v)} placeholder={PLACEHOLDERS.colorMood[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.colorMood.cn : DESCRIPTIONS.colorMood.en} />
                         <InputField label={FIELD_LABELS.composition[language]} value={data.modifiers?.composition || ''} onChange={(v) => updateField('modifiers', 'composition', v)} placeholder={PLACEHOLDERS.composition[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.composition.cn : DESCRIPTIONS.composition.en} />
+                        <InputField label={FIELD_LABELS.visualLayers[language]} value={data.modifiers?.visualLayers || ''} onChange={(v) => updateField('modifiers', 'visualLayers', v)} placeholder={PLACEHOLDERS.visualLayers[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.visualLayers.cn : DESCRIPTIONS.visualLayers.en} />
                         <InputField label={FIELD_LABELS.typography[language]} value={data.modifiers?.typography || ''} onChange={(v) => updateField('modifiers', 'typography', v)} placeholder={PLACEHOLDERS.typography[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.typography.cn : DESCRIPTIONS.typography.en} />
                         <InputField label={FIELD_LABELS.details[language]} value={data.modifiers?.details || ''} onChange={(v) => updateField('modifiers', 'details', v)} placeholder={PLACEHOLDERS.details[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.details.cn : DESCRIPTIONS.details.en} />
                     </div>

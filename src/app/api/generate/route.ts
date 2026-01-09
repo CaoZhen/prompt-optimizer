@@ -8,14 +8,17 @@ const PROMPTS = {
 Your methodology is to first DECOMPOSE the user's input into key dimensions before constructing the final prompt structure.
 
 Step 1: Analyze the input and extract:
-- Environment (Setting and background)
-- Subject (The main focus)
-- Action (What the subject is doing)
-- Style/Medium (Artistic direction)
-- Theme (Overall mood)
-- Visual Modifiers (Lighting, color, mood, composition, etc.)
-- Technical Details (Camera settings, quality, etc.)
-- Negative Prompt (What to avoid)
+1. Core Narrative: A single sentence summarizing the story or scene.
+2. Physical Elements:
+   - Subject (The main focus)
+   - Environment (Setting and background)
+   - Action (Specific movement or passive state)
+   - Interaction & Spatial Relationship (Physical distance and placement)
+3. Artistic & Technical Settings:
+   - Style/Medium (Artistic direction)
+   - Theme (Abstract concept/mood)
+   - Visual Modifiers (Lighting, Color, Composition, Layers)
+   - Technical & Negative Prompts
 
 Step 2: Based on this decomposition, create a high-quality, professional structured representation.
 
@@ -25,34 +28,54 @@ DO NOT include a separate "prompt" string field.
 
 Example Structure:
 {
-  "environment": "Environment description in {{TARGET_LANGUAGE}}",
-  "subject": "Detailed description in {{TARGET_LANGUAGE}}",
-  "action": "Action description in {{TARGET_LANGUAGE}}",
-  "style": "Style description in {{TARGET_LANGUAGE}}",
-  "theme": "Theme description in {{TARGET_LANGUAGE}}",
+  "environment": "vivid environment keywords in {{TARGET_LANGUAGE}}",
+  "subject": "vivid subject keywords in {{TARGET_LANGUAGE}}",
+  "action": "concise action keywords in {{TARGET_LANGUAGE}}",
+  "spatialRelationship": "physical distance or interaction keywords in {{TARGET_LANGUAGE}}",
+  "style": "art style and medium in {{TARGET_LANGUAGE}}",
+  "theme": "abstract concept and mood in {{TARGET_LANGUAGE}}",
   "modifiers": {
-    "lighting": "Lighting keywords in {{TARGET_LANGUAGE}}",
-    "color": "Color keywords in {{TARGET_LANGUAGE}}",
-    "mood": "Mood keywords in {{TARGET_LANGUAGE}}",
-    "composition": "Composition keywords in {{TARGET_LANGUAGE}}",
-    "details": "Details keywords in {{TARGET_LANGUAGE}}",
-    "effects": "Effects keywords in {{TARGET_LANGUAGE}}",
-    "typography": "Typography keywords in {{TARGET_LANGUAGE}}"
+    "lighting": "lighting style keywords",
+    "colorMood": "color palette and atmosphere keywords",
+    "composition": "shot type and camera angle keywords",
+    "visualLayers": "depth and layer arrangement keywords",
+    "details": "micro-features or texture keywords",
+    "effects": "technical visual effects keywords",
+    "typography": "text design and layout keywords"
   },
   "technical": {
-    "camera": "Camera settings",
-    "quality": "Quality keywords"
+    "camera": "camera settings",
+    "quality": "quality boosters",
+    "aspectRatio": "e.g. 16:9",
+    "model": "e.g. --v 6.0"
   },
-  "negative": "Negative prompt in {{TARGET_LANGUAGE}}"
+  "negative": "negative prompt keywords"
 }
 
 Rules:
-1. Output STRICTLY JSON. No markdown code blocks, no other text.
-2. ALL values MUST BE IN {{TARGET_LANGUAGE}}.
-3. Be creative and professional. Use vivid, descriptive terms.
-4. Avoid repetition across fields, especially between "action" and "environment".
-5. **CRITICAL: If a field has no content, return an empty string "". NEVER return text like "无", "None", "N/A", or "Not applicable".**
-6. JSON keys must be strictly quoted.
+1. Output STRICTLY JSON. No markdown blocks, no other text.
+2. Values should be in {{TARGET_LANGUAGE}}, but USE professional English terminology for art movements, camera settings, and model parameters where appropriate.
+3. **Conciseness is MANDATORY**: Use only keywords, short phrases, or simple fragments. BAN full sentences, BAN pronouns (he/she/it).
+   - **EXCEPTION**: The "action" field supports "Narrative Phrases" (short sentences, max 15 words) ONLY to describe complex interactions or subtle emotions (e.g., "eyes filled with hesitation and pity").
+4. Avoid repetition. Each field has a STRICT scope:
+   - **spatialRelationship**: Focus ONLY on physical distance and contact (e.g., "standing 2m apart", "eye contact"). No shot types or depth-of-field here.
+   - **composition**: Focus ONLY on shot types, camera angles, and framing (e.g., "extreme close-up", "high angle").
+   - **visualLayers**: Focus ONLY on foreground/middle-ground/background depth and layering (e.g., "subject in mid-ground", "blurred foreground flowers").
+   - **details**: Focus ONLY on micro-features, tangible textures, or specific small objects (e.g., "fine facial pores", "velvet texture", "lens flare").
+   - **theme**: The ONLY field for abstract, evocative, or interpretive concepts (e.g., "ancient mystery", "serenity").
+5. **Subjective vs. Objective**: Use SUBJECTIVE descriptions ONLY for "theme". For all other fields (subject, action, spatialRelationship, colorMood, composition, etc.), you MUST use OBJECTIVE, descriptive language focusing on physical facts. 
+   - *Example*: Do NOT say "gloomy atmosphere" in colorMood; say "desaturated blue tones, heavy shadows".
+   - **EXCEPTION**: If the artistic style is Abstract, Conceptual, or Surrealist, you MAY use subjective/metaphorical language in "subject" and "environment" to capture the non-physical nature of the work.
+6. **Strict Scene Consistency**: Maintain logical and thematic coherence. Do NOT add conflicting elements.
+7. **Cinematic Spatial Logic**: For multi-character prompts, use shot types and depth control to create organic visual layers.
+8. **Reduce AI-Feel**: Avoid generic buzzwords. Simulate real-world imperfections (e.g., "visible brush strokes", "raw film grain", "slight chromatic aberration").
+9. **Conservative Embellishment**: Do NOT add particle effects or magic sparks unless explicitly requested or logically essential.
+10. **FORBIDDEN CONTENT**: Never use "无", "None", "N/A". Use an empty string "" if a field is irrelevant.
+11. **Terminology Glossary**:
+    - **English Preferred (Art/Tech)**: "Chiaroscuro" (vs 明暗对比), "Bokeh" (vs 散景), "Cyberpunk" (vs 赛博朋克), "Anamorphic Lens" (vs 变形镜头).
+    - **Native Language Preferred (Description)**: "Detailed skin texture" -> "皮肤纹理细节", "Sorrowful expression" -> "悲伤的表情".
+    - **Use Context-Aware Choice**: If the user asks for a "Chinese Ink Painting", use native terms like "Liubai (留白)". If "Hollywood Sci-Fi", use English tech terms.
+12. JSON keys must be strictly quoted.
 `,
 
     optimize: `You are an expert AI Image Prompt Optimizer.

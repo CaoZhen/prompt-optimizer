@@ -37,12 +37,8 @@ export default function StandardMode({ initialData, onChange, language }: Standa
     // Tooltip Descriptions
     const DESCRIPTIONS = {
         subject: {
-            cn: "画面中最重要的对象，如人物、物体或生物。",
-            en: "Describe the main focus of the image (person, object, creature)."
-        },
-        action: {
-            cn: "主体正在做什么？描述动作、姿态或状态。",
-            en: "What is the subject doing? Pose, action, or state."
+            cn: "画面的核心主体（如人物、物体）及其动作或状态。",
+            en: "Main focus of the image (subject) and their action/state."
         },
         spatialRelationship: {
             cn: "多个主体之间或主体与环境之间的互动、空间距离和层次关系。",
@@ -149,10 +145,10 @@ export default function StandardMode({ initialData, onChange, language }: Standa
                     </div>
 
                     <div className="space-y-4">
-                        <InputField label={FIELD_LABELS.subject[language]} value={data.subject} onChange={(v) => updateField('subject', '', v)} placeholder={PLACEHOLDERS.subject[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.subject.cn : DESCRIPTIONS.subject.en} />
-                        <InputField label={FIELD_LABELS.action[language]} value={data.action || ''} onChange={(v) => updateField('action', '', v)} placeholder={PLACEHOLDERS.action[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.action.cn : DESCRIPTIONS.action.en} />
-                        <InputField label={FIELD_LABELS.spatialRelationship[language]} value={data.spatialRelationship || ''} onChange={(v) => updateField('spatialRelationship', '', v)} placeholder={PLACEHOLDERS.spatialRelationship[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.spatialRelationship.cn : DESCRIPTIONS.spatialRelationship.en} />
                         <InputField label={FIELD_LABELS.environment[language]} value={data.environment} onChange={(v) => updateField('environment', '', v)} placeholder={PLACEHOLDERS.environment[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.environment.cn : DESCRIPTIONS.environment.en} />
+                        <InputField label={FIELD_LABELS.subject[language]} value={data.subject} onChange={(v) => updateField('subject', '', v)} placeholder={PLACEHOLDERS.subject[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.subject.cn : DESCRIPTIONS.subject.en} />
+                        <InputField label={FIELD_LABELS.spatialRelationship[language]} value={data.spatialRelationship || ''} onChange={(v) => updateField('spatialRelationship', '', v)} placeholder={PLACEHOLDERS.spatialRelationship[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.spatialRelationship.cn : DESCRIPTIONS.spatialRelationship.en} />
+                        <InputField label={FIELD_LABELS.style[language]} value={data.style} onChange={(v) => updateField('style', '', v)} placeholder={PLACEHOLDERS.style[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.style.cn : DESCRIPTIONS.style.en} />
                         <InputField label={FIELD_LABELS.theme[language]} value={data.theme || ''} onChange={(v) => updateField('theme', '', v)} placeholder={PLACEHOLDERS.theme[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.theme.cn : DESCRIPTIONS.theme.en} />
                     </div>
                 </section>
@@ -161,14 +157,13 @@ export default function StandardMode({ initialData, onChange, language }: Standa
                 <section className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
                     <h3 className="text-lg font-semibold mb-4 text-purple-600">{UI_LABELS.visualModifiers[language]}</h3>
                     <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-                        <InputField label={FIELD_LABELS.style[language]} value={data.style} onChange={(v) => updateField('style', '', v)} placeholder={PLACEHOLDERS.style[language]} isTextArea className="md:col-span-2" description={language === 'chinese' ? DESCRIPTIONS.style.cn : DESCRIPTIONS.style.en} />
                         <InputField label={FIELD_LABELS.lighting[language]} value={data.modifiers?.lighting || ''} onChange={(v) => updateField('modifiers', 'lighting', v)} placeholder={PLACEHOLDERS.lighting[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.lighting.cn : DESCRIPTIONS.lighting.en} />
-                        <InputField label={FIELD_LABELS.effects[language]} value={data.modifiers?.effects || ''} onChange={(v) => updateField('modifiers', 'effects', v)} placeholder={PLACEHOLDERS.effects[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.effects.cn : DESCRIPTIONS.effects.en} />
                         <InputField label={FIELD_LABELS.colorMood[language]} value={data.modifiers?.colorMood || ''} onChange={(v) => updateField('modifiers', 'colorMood', v)} placeholder={PLACEHOLDERS.colorMood[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.colorMood.cn : DESCRIPTIONS.colorMood.en} />
                         <InputField label={FIELD_LABELS.composition[language]} value={data.modifiers?.composition || ''} onChange={(v) => updateField('modifiers', 'composition', v)} placeholder={PLACEHOLDERS.composition[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.composition.cn : DESCRIPTIONS.composition.en} />
                         <InputField label={FIELD_LABELS.visualLayers[language]} value={data.modifiers?.visualLayers || ''} onChange={(v) => updateField('modifiers', 'visualLayers', v)} placeholder={PLACEHOLDERS.visualLayers[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.visualLayers.cn : DESCRIPTIONS.visualLayers.en} />
-                        <InputField label={FIELD_LABELS.typography[language]} value={data.modifiers?.typography || ''} onChange={(v) => updateField('modifiers', 'typography', v)} placeholder={PLACEHOLDERS.typography[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.typography.cn : DESCRIPTIONS.typography.en} />
                         <InputField label={FIELD_LABELS.details[language]} value={data.modifiers?.details || ''} onChange={(v) => updateField('modifiers', 'details', v)} placeholder={PLACEHOLDERS.details[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.details.cn : DESCRIPTIONS.details.en} />
+                        <InputField label={FIELD_LABELS.effects[language]} value={data.modifiers?.effects || ''} onChange={(v) => updateField('modifiers', 'effects', v)} placeholder={PLACEHOLDERS.effects[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.effects.cn : DESCRIPTIONS.effects.en} />
+                        <InputField label={FIELD_LABELS.typography[language]} value={data.modifiers?.typography || ''} onChange={(v) => updateField('modifiers', 'typography', v)} placeholder={PLACEHOLDERS.typography[language]} isTextArea className="md:col-span-2" description={language === 'chinese' ? DESCRIPTIONS.typography.cn : DESCRIPTIONS.typography.en} />
                     </div>
                 </section>
 
@@ -177,10 +172,10 @@ export default function StandardMode({ initialData, onChange, language }: Standa
                     <section className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm animate-in fade-in slide-in-from-bottom-4">
                         <h3 className="text-lg font-semibold mb-4 text-emerald-600">{UI_LABELS.technicalSpecs[language]}</h3>
                         <div className="grid grid-cols-2 md:grid-cols-3 gap-4">
-                            <InputField label={FIELD_LABELS.quality[language]} value={data.technical?.quality || ''} onChange={(v) => updateField('technical', 'quality', v)} description={language === 'chinese' ? DESCRIPTIONS.quality.cn : DESCRIPTIONS.quality.en} />
-                            <InputField label={FIELD_LABELS.aspectRatio[language]} value={data.technical?.aspectRatio || ''} onChange={(v) => updateField('technical', 'aspectRatio', v)} placeholder="3:4" description={language === 'chinese' ? DESCRIPTIONS.aspectRatio.cn : DESCRIPTIONS.aspectRatio.en} />
+                            <InputField label={FIELD_LABELS.camera[language]} value={data.technical?.camera || ''} onChange={(v) => updateField('technical', 'camera', v)} placeholder={language === 'chinese' ? '50mm 镜头' : '50mm lens'} className="col-span-2" description={language === 'chinese' ? DESCRIPTIONS.camera.cn : DESCRIPTIONS.camera.en} />
+                            <InputField label={FIELD_LABELS.quality[language]} value={data.technical?.quality || ''} onChange={(v) => updateField('technical', 'quality', v)} placeholder="8k" description={language === 'chinese' ? DESCRIPTIONS.quality.cn : DESCRIPTIONS.quality.en} />
+                            <InputField label={FIELD_LABELS.aspectRatio[language]} value={data.technical?.aspectRatio || ''} onChange={(v) => updateField('technical', 'aspectRatio', v)} placeholder="16:9" description={language === 'chinese' ? DESCRIPTIONS.aspectRatio.cn : DESCRIPTIONS.aspectRatio.en} />
                             <InputField label={FIELD_LABELS.model[language]} value={data.technical?.model || ''} onChange={(v) => updateField('technical', 'model', v)} placeholder="--v 6.0" description={language === 'chinese' ? DESCRIPTIONS.model.cn : DESCRIPTIONS.model.en} />
-                            <InputField label={FIELD_LABELS.camera[language]} value={data.technical?.camera || ''} onChange={(v) => updateField('technical', 'camera', v)} placeholder="50mm lens" className="col-span-2" description={language === 'chinese' ? DESCRIPTIONS.camera.cn : DESCRIPTIONS.camera.en} />
                         </div>
                     </section>
                 )}

@@ -117,8 +117,7 @@ export const UI_LABELS = {
 
 export const FIELD_LABELS = {
 
-    subject: { chinese: '主体', english: 'Subject' },
-    action: { chinese: '动作/状态', english: 'Action/State' },
+    subject: { chinese: '主体与动态', english: 'Subject & Action' },
     spatialRelationship: { chinese: '互动与空间关系', english: 'Interaction & Spatial' },
     environment: { chinese: '场景', english: 'Environment' },
     theme: { chinese: '核心概念', english: 'Core Concept' },
@@ -141,8 +140,7 @@ export const PLACEHOLDERS = {
         chinese: '例如：赛博朋克风格的上海街道，下雨天，蓝色霓虹灯...',
         english: 'E.g., Cyberpunk street in Shanghai, raining, blue neon lights...'
     },
-    subject: { chinese: '例如：一个未来的武士', english: 'E.g., A futuristic samurai' },
-    action: { chinese: '例如：正在检修设备, 回头凝望', english: 'E.g., Repairing equipment, looking back' },
+    subject: { chinese: '例如：一个未来的武士，正在检修设备，回头凝望...', english: 'E.g., A futuristic samurai, repairing equipment, looking back...' },
     spatialRelationship: { chinese: '例如：主体位于画面中心，与周围环境互动，前后错落的层次', english: 'E.g., Subject in center, interacting with surroundings, foreground/background layers' },
     environment: { chinese: '例如：赛博朋克街道', english: 'E.g., Cyberpunk street' },
     theme: { chinese: '例如：探索与孤独', english: 'E.g., Exploration and loneliness' },

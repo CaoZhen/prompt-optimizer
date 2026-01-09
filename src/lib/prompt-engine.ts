@@ -13,7 +13,6 @@ export function buildPrompt(data: PromptStructure, platform: Platform, language:
     const core = [
         data.environment,
         data.subject,
-        data.action,
         data.spatialRelationship,
         data.style,
         data.theme
@@ -29,10 +28,12 @@ export function buildPrompt(data: PromptStructure, platform: Platform, language:
         data.modifiers?.typography
     ].filter(isClean);
 
-    const technical = [
+    // Only include technical params (Camera, Quality) in the base prompt if the platform supports them (MJ/SD).
+    // DALL-E and others hide the technical panel, so we shouldn't include these in the prompt.
+    const technical = ['midjourney', 'sd'].includes(platform) ? [
         data.technical?.camera,
         data.technical?.quality
-    ].filter(isClean);
+    ].filter(isClean) : [];
 
     // Helper to join parts without double punctuation
     const smartJoin = (parts: string[]) => {
@@ -101,13 +102,27 @@ function formatMidjourney(base: string, data: PromptStructure): string {
 }
 
 function formatStableDiffusion(base: string, data: PromptStructure): string {
-    return [
-        "Positive Prompt:",
-        base,
-        "",
-        "Negative Prompt:",
-        data.negative
-    ].join('\n');
+    const sections: string[] = [];
+
+    if (base.trim()) {
+        sections.push("Positive Prompt:");
+        sections.push(base);
+    }
+
+    if (data.negative?.trim()) {
+        if (sections.length > 0) sections.push(""); // Spacer
+        sections.push("Negative Prompt:");
+        sections.push(data.negative);
+    }
+
+    if (data.technical?.aspectRatio || data.technical?.model) {
+        if (sections.length > 0) sections.push(""); // Spacer
+        sections.push("Parameters:");
+        if (data.technical?.aspectRatio) sections.push(`Aspect Ratio: ${data.technical.aspectRatio}`);
+        if (data.technical?.model) sections.push(`Model: ${data.technical.model}`);
+    }
+
+    return sections.join('\n');
 }
 
 

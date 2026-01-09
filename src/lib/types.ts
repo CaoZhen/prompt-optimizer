@@ -1,7 +1,6 @@
 
 export interface PromptStructure {
     subject: string;
-    action: string; // New: What is the subject doing?
     spatialRelationship: string; // New: Interaction and spatial relationship between multiple subjects or between subject and environment
     environment: string;
     theme: string; // New: Core concept/idea

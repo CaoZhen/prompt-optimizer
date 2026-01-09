@@ -11,14 +11,16 @@ interface QuickModeProps {
     onEditInStandard: () => void;
     currentData: PromptStructure;
     language: 'english' | 'chinese';
+    input: string;
+    onInputChange: (value: string) => void;
 }
 
-export default function QuickMode({ onGenerate, onEditInStandard, currentData: _currentData, language }: QuickModeProps) {
-    const [input, setInput] = useState('');
+export default function QuickMode({ onGenerate, onEditInStandard, currentData: _currentData, language, input, onInputChange }: QuickModeProps) {
     const [loading, setLoading] = useState(false);
     const [generatedPrompt, setGeneratedPrompt] = useState('');
     const [rawJson, setRawJson] = useState<PromptStructure | null>(null);
     const [isCopied, setIsCopied] = useState(false);
+    const [isJsonCopied, setIsJsonCopied] = useState(false);
 
     // DeepSeek Config State
     const [hasServerKey, setHasServerKey] = useState<boolean | null>(null);
@@ -140,7 +142,7 @@ export default function QuickMode({ onGenerate, onEditInStandard, currentData: _
                 </label>
                 <textarea
                     value={input}
-                    onChange={(e) => setInput(e.target.value)}
+                    onChange={(e) => onInputChange(e.target.value)}
                     placeholder={PLACEHOLDERS.quickInput[language]}
                     rows={10}
 
@@ -234,9 +236,20 @@ export default function QuickMode({ onGenerate, onEditInStandard, currentData: _
                         <div className="bg-slate-900 p-6 rounded-xl border border-slate-800 shadow-sm animate-in fade-in slide-in-from-bottom-6">
                             <h3 className="text-xs font-medium text-slate-400 mb-3 uppercase tracking-wider flex items-center justify-between">
                                 <span>{UI_LABELS.structureJson[language]}</span>
+                                <button
+                                    onClick={() => {
+                                        navigator.clipboard.writeText(JSON.stringify(rawJson, null, 2));
+                                        setIsJsonCopied(true);
+                                        setTimeout(() => setIsJsonCopied(false), 2000);
+                                    }}
+                                    className="text-slate-500 hover:text-emerald-400 transition-colors flex items-center gap-1.5"
+                                    title={UI_LABELS.copy[language]}
+                                >
+                                    {isJsonCopied ? <Check className="w-4 h-4" /> : <Copy className="w-4 h-4" />}
+                                    <span className="text-xs">{isJsonCopied ? UI_LABELS.copied[language] : UI_LABELS.copy[language]}</span>
+                                </button>
                             </h3>
-                            <div className="bg-slate-950 rounded-lg p-4 border border-slate-800">
-
+                            <div className="bg-slate-950 rounded-lg p-4 border border-slate-800 relative group">
                                 <pre className="text-xs font-mono text-emerald-400 whitespace-pre-wrap break-words leading-relaxed">
                                     {JSON.stringify(rawJson, null, 2)}
                                 </pre>

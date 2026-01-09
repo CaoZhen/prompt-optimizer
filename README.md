@@ -47,7 +47,7 @@ A professional AI image prompt optimization tool designed to help creators gener
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/yourusername/prompt-optimizer.git
+   git clone https://github.com/CaoZhen/prompt-optimizer.git
    cd prompt-optimizer
    ```
 

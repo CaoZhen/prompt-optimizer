@@ -21,8 +21,10 @@ A professional AI image prompt optimization tool designed to help creators gener
 - **Multi-Platform Support**: Tailored output for Midjourney, Stable Diffusion, and DALL-E/Kling.
 - **Visual Feedback**: Real-time prompt preview and easy copy functionality.
 
-### 🌐 Internationalization (i18n)
+### 🌐 Internationalization (i18n) & Localization
 - **Bilingual Interface**: Fully supported **Chinese** and **English** UI.
+- **Dual-Language System Prompts**: The AI logic is natively localized. Switching to Chinese in the UI ensures the AI receives robust system instructions in Chinese (not just translation), strictly enforcing Chinese output for better nuance and control.
+- **Smart Style Suggester**: Dynamic AI suggestions for visual styles based on your input, automatically adapting to your selected language.
 - **One-Click Toggle**: Switch languages instantly from the settings menu.
 - **Localized Placeholders**: Context-aware examples and descriptions for each language.
 

@@ -64,6 +64,10 @@ export default function StandardMode({ initialData, onChange, language }: Standa
             cn: "视觉特效或纹理质感（如：丁达尔效应、胶片颗粒、粗糙纹理）。",
             en: "Visual effects, particles, or textures."
         },
+        artisticReference: {
+            cn: "特定的艺术家、作品或流派参考，用于定调氛围（如：梵高、银翼杀手）。",
+            en: "Specific artist, work, or genre reference to set the atmosphere (e.g., Van Gogh, Blade Runner)."
+        },
         colorMood: {
             cn: "画面的配色方案与整体氛围（如：冷色调、神秘、欢快）。",
             en: "Color palette and emotional atmosphere."
@@ -163,6 +167,7 @@ export default function StandardMode({ initialData, onChange, language }: Standa
                         <InputField label={FIELD_LABELS.visualLayers[language]} value={data.modifiers?.visualLayers || ''} onChange={(v) => updateField('modifiers', 'visualLayers', v)} placeholder={PLACEHOLDERS.visualLayers[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.visualLayers.cn : DESCRIPTIONS.visualLayers.en} />
                         <InputField label={FIELD_LABELS.details[language]} value={data.modifiers?.details || ''} onChange={(v) => updateField('modifiers', 'details', v)} placeholder={PLACEHOLDERS.details[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.details.cn : DESCRIPTIONS.details.en} />
                         <InputField label={FIELD_LABELS.effects[language]} value={data.modifiers?.effects || ''} onChange={(v) => updateField('modifiers', 'effects', v)} placeholder={PLACEHOLDERS.effects[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.effects.cn : DESCRIPTIONS.effects.en} />
+                        <InputField label={FIELD_LABELS.artisticReference[language]} value={data.modifiers?.artisticReference || ''} onChange={(v) => updateField('modifiers', 'artisticReference', v)} placeholder={PLACEHOLDERS.artisticReference[language]} isTextArea description={language === 'chinese' ? DESCRIPTIONS.artisticReference.cn : DESCRIPTIONS.artisticReference.en} />
                         <InputField label={FIELD_LABELS.typography[language]} value={data.modifiers?.typography || ''} onChange={(v) => updateField('modifiers', 'typography', v)} placeholder={PLACEHOLDERS.typography[language]} isTextArea className="md:col-span-2" description={language === 'chinese' ? DESCRIPTIONS.typography.cn : DESCRIPTIONS.typography.en} />
                     </div>
                 </section>

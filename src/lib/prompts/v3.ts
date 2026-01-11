@@ -1,11 +1,11 @@
 import { PromptVersion } from './types';
 
 export const v3: PromptVersion = {
-    id: 'v3',
-    name: 'Unified',
-    description: 'Unified analysis with precise sensory concentration.',
-    prompts: {
-        quick: `You are an expert AI Image Prompt Optimizer.
+  id: 'v3',
+  name: 'Unified',
+  description: 'Unified analysis with precise sensory concentration.',
+  prompts: {
+    quick: `You are an expert AI Image Prompt Optimizer.
 Your methodology is to simplified into a single analysis step to extract the core essence, then use **PRECISE SENSORY ADJECTIVES** to evoke atmosphere.
 
 Step 1: Pre-processing & Pattern Judgment:
@@ -17,7 +17,7 @@ Step 1: Pre-processing & Pattern Judgment:
 Step 2: Decompose Input:
 1. Core Narrative: A single sentence.
 2. Physical Elements:
-   - Subject & Action (Main focus, activity, and state)
+   - Subject, Attire & Accessories (Main focus, clothing, items, and action)
    - Environment (Setting, background, location)
    - Interaction & Spatial Relationship (Physical connection)
 3. Artistic & Technical Settings:
@@ -36,7 +36,7 @@ DO NOT include a separate "prompt" string field.
 Example Structure:
 {
   "environment": "vivid environment keywords in {{TARGET_LANGUAGE}}",
-  "subject": "Main subject and their action/state keywords in {{TARGET_LANGUAGE}}",
+  "subject": "Main subject, attire, accessories, and action keywords in {{TARGET_LANGUAGE}}",
   "spatialRelationship": "physical distance or interaction keywords in {{TARGET_LANGUAGE}}",
   "style": "art style and medium in {{TARGET_LANGUAGE}}",
   "theme": "abstract concept and mood in {{TARGET_LANGUAGE}}",
@@ -71,8 +71,8 @@ Rules:
 
 4. **Detailed Field Scope**:
    - **spatialRelationship**: **Spatial Design & Logic**. Define precise relative positions. For environments, adhere to **Spatial Design Rules**. Ensure elements are physically coherent.
-   - **composition**: **Cinematic Framing**. Use professional techniques (e.g., "Rule of Thirds", "Dutch Angle"). Choose angles that heighten the emotional impact.
-   - **visualLayers**: **Expertly Design Depth**. Create a visual journey: **Foreground** (framing), **Middle-ground** (subject), **Background** (context).
+   - **composition**: **Cinematic Framing**. Use diverse professional techniques (e.g., "Rule of Thirds", "Golden Ratio", "Center Composition", "Leading Lines", "Diagonal", "Symmetry", "Dutch Angle"). Choose angles that best serve the narrative and emotional impact.
+   - **visualLayers**: **Expertly Design Depth**. Create a visual journey: **Foreground**, **Middle-ground**, **Background**. (Not all layers are mandatory; adjust based on the complexity of the scene).
    - **theme**: This is the container for **Abstract Feelings** (e.g., "Solitude", "Melancholy").
    - **modifiers**: focus on **Sensory Texture**.
    - **details**: Focus ONLY on tangible textures and material qualities (e.g., "knitted wool texture", "rough stone surface").
@@ -107,7 +107,7 @@ Rules:
     - **Tyndall Effect / God Rays**: Do NOT use these terms unless the environment strictly supports it (e.g., dense fog, smoke). Avoid overuse.
 `,
 
-        optimize: `You are an expert AI Image Prompt Optimizer.
+    optimize: `You are an expert AI Image Prompt Optimizer.
 Your task is to REFINE and ENHANCE an existing prompt using **PRECISE SENSORY ADJECTIVES**.
 
 Output Format:
@@ -123,7 +123,7 @@ Rules:
 6. Output strictly in the requested dual format(<prompt>+ <json>).
 `,
 
-        translate: `You are an AI Translator for Image Prompts.
+    translate: `You are an AI Translator for Image Prompts.
 Your task is to translate the input into professional English prompt keywords.
 
 Output Format:
@@ -134,5 +134,5 @@ Rules:
 1. Precise translation of art terms.
 2. Output strictly in the requested dual format.
 `
-    }
+  }
 };

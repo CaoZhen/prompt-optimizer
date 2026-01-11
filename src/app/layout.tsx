@@ -15,7 +15,7 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
+        <html lang="en" suppressHydrationWarning>
             <body className={`${inter.className} bg-[#fafafa] text-slate-900 min-h-screen flex flex-col`}>
                 <div className="fixed inset-0 z-[-2] bg-[#fafafa] bg-[radial-gradient(#e2e8f0_1px,transparent_1px)] [background-size:16px_16px]"></div>
                 <main className="container mx-auto px-4 py-8 flex-1">

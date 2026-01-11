@@ -13,6 +13,7 @@ export interface PromptStructure {
         details: string;
         effects: string; // New: Visual effects and texture
         typography: string; // New: Typography and layout
+        artisticReference: string; // New: Specific artist/work reference for atmosphere
     };
     technical: {
         camera?: string;

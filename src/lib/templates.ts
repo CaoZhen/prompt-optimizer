@@ -15,6 +15,7 @@ export const TEMPLATES: Template[] = [
             theme: '勇气与生存',
             style: '电影感人像摄影 (Cinematic Portrait)',
             modifiers: {
+                artisticReference: '',
                 lighting: '伦勃朗光，戏剧性阴影',
                 visualLayers: "",
                 composition: '面部特写 (Close-up)，浅景深',
@@ -45,6 +46,7 @@ export const TEMPLATES: Template[] = [
             theme: '未来科技',
             style: '日系二次元厚涂 (Anime Impasto)',
             modifiers: {
+                artisticReference: '',
                 lighting: '轮廓光，霓虹发光',
                 visualLayers: "",
                 composition: '全身立绘 (Full Body)，动态姿势',
@@ -74,6 +76,7 @@ export const TEMPLATES: Template[] = [
             theme: '角色设定集 (Character Sheet)',
             style: '概念艺术 (Concept Art)',
             modifiers: {
+                artisticReference: '',
                 lighting: '平光，无阴影干扰',
                 visualLayers: "",
                 composition: '三视图并排 (Three views)，全身',
@@ -101,6 +104,7 @@ export const TEMPLATES: Template[] = [
             theme: '怀旧青春',
             style: '复古胶片摄影 (Vintage Film Photography)',
             modifiers: {
+                artisticReference: '',
                 lighting: '暖黄夕阳，漏光效果 (Light Leaks)',
                 visualLayers: "",
                 composition: '中景 (Medium Shot)',
@@ -129,6 +133,7 @@ export const TEMPLATES: Template[] = [
             theme: '自然与魔法',
             style: 'CG 渲染，超写实',
             modifiers: {
+                artisticReference: '',
                 lighting: '生物荧光，点光',
                 visualLayers: "",
                 composition: '极度特写 (Extreme Close-up)',
@@ -159,6 +164,7 @@ export const TEMPLATES: Template[] = [
             theme: '渺小与宏大',
             style: 'IMAX 电影摄影 (IMAX Cinematography)',
             modifiers: {
+                artisticReference: '',
                 lighting: '黄金时刻，长阴影',
                 visualLayers: "",
                 composition: '超广角 (Ultra Wide Angle)，极宽画幅',
@@ -187,6 +193,7 @@ export const TEMPLATES: Template[] = [
             theme: '宁静与治愈',
             style: '宫崎骏动画背景风格 (Ghibli Background Art)',
             modifiers: {
+                artisticReference: '',
                 lighting: '明亮的日光，透彻',
                 visualLayers: "",
                 composition: '全景 (Panorama)',
@@ -216,6 +223,7 @@ export const TEMPLATES: Template[] = [
             theme: '高科技低生活 (High Tech Low Life)',
             style: '赛博朋克概念艺术 (Cyberpunk Concept Art)',
             modifiers: {
+                artisticReference: '',
                 lighting: '各种霓虹灯光，反射',
                 visualLayers: "",
                 composition: '仰视镜头 (Low Angle)，强调建筑高度',
@@ -243,6 +251,7 @@ export const TEMPLATES: Template[] = [
             theme: '探索未知',
             style: '幻想插画 (Fantasy Illustration)',
             modifiers: {
+                artisticReference: '',
                 lighting: '梦幻柔光',
                 visualLayers: "",
                 composition: '鸟瞰视角 (Aerial View)',
@@ -271,6 +280,7 @@ export const TEMPLATES: Template[] = [
             theme: '舒适与格调',
             style: '建筑可视化渲染 (ArchViz)',
             modifiers: {
+                artisticReference: '',
                 lighting: '漫射自然光，柔和',
                 visualLayers: "",
                 composition: '一点透视 (One-point Perspective)',
@@ -300,6 +310,7 @@ export const TEMPLATES: Template[] = [
             theme: '速度与创新',
             style: '商业广告设计 (Commercial Advertisement)',
             modifiers: {
+                artisticReference: '',
                 lighting: '高调摄影，边缘光',
                 visualLayers: "",
                 composition: '中心构图，留白给文案',
@@ -328,6 +339,7 @@ export const TEMPLATES: Template[] = [
             theme: '极简未来主义',
             style: '工业设计渲染 (Industrial Design Render)',
             modifiers: {
+                artisticReference: '',
                 lighting: '演播室灯光，反射光',
                 visualLayers: "",
                 composition: '45度角展示',
@@ -355,6 +367,7 @@ export const TEMPLATES: Template[] = [
             theme: '哲学与思考',
             style: '极简平面设计 (Minimalist Graphic Design)',
             modifiers: {
+                artisticReference: '',
                 lighting: '平光',
                 visualLayers: "",
                 composition: '极简构图，负空间',
@@ -383,6 +396,7 @@ export const TEMPLATES: Template[] = [
             theme: '奢华生活',
             style: '时尚平拍 (Fashion Flat Lay)',
             modifiers: {
+                artisticReference: '',
                 lighting: '柔光箱，无阴影',
                 visualLayers: "",
                 composition: '俯视全景 (Top Down View)',
@@ -411,6 +425,7 @@ export const TEMPLATES: Template[] = [
             theme: '电商主图',
             style: '电商产品摄影 (E-commerce Photography)',
             modifiers: {
+                artisticReference: '',
                 lighting: '通透的布光，强调质感',
                 visualLayers: "",
                 composition: '居中，完整展示',
@@ -441,6 +456,7 @@ export const TEMPLATES: Template[] = [
             theme: '禅意与自然',
             style: '中国水墨画 (Chinese Ink Wash Painting)',
             modifiers: {
+                artisticReference: '',
                 lighting: '散点透视，无特定光源',
                 visualLayers: "",
                 composition: '留白 (Negative Space)，气韵生动',
@@ -469,6 +485,7 @@ export const TEMPLATES: Template[] = [
             theme: '黄金时代科幻',
             style: '复古科幻插画 (Retro Sci-Fi Illustration)',
             modifiers: {
+                artisticReference: '',
                 lighting: '鲜艳的色彩，高饱和',
                 visualLayers: "",
                 composition: '充满画面',
@@ -496,6 +513,7 @@ export const TEMPLATES: Template[] = [
             theme: '童话与生活',
             style: '吉卜力工作室风格 (Studio Ghibli Style)',
             modifiers: {
+                artisticReference: '',
                 lighting: '美丽的自然光，透视',
                 visualLayers: "",
                 composition: '充满生活气息的细节',
@@ -524,6 +542,7 @@ export const TEMPLATES: Template[] = [
             theme: '复古游戏',
             style: '像素艺术 (Pixel Art)',
             modifiers: {
+                artisticReference: '',
                 lighting: '像素化的光影',
                 visualLayers: "",
                 composition: '等轴测视角 (Isometric)',
@@ -551,6 +570,7 @@ export const TEMPLATES: Template[] = [
             theme: '痛苦与救赎',
             style: '暗黑神话 (Dark Fantasy), 雕塑摄影',
             modifiers: {
+                artisticReference: '',
                 lighting: '顶光，强烈的明暗对比 (Chiaroscuro)',
                 visualLayers: "",
                 composition: '庄严，对称',

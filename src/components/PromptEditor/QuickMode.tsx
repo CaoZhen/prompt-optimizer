@@ -15,7 +15,7 @@ interface QuickModeProps {
     onInputChange: (value: string) => void;
 }
 
-export default function QuickMode({ onGenerate, onEditInStandard, currentData: _currentData, language, input, onInputChange }: QuickModeProps) {
+export default function QuickMode({ onGenerate, onEditInStandard, language, input, onInputChange }: QuickModeProps) {
     const [loading, setLoading] = useState(false);
     const [generatedPrompt, setGeneratedPrompt] = useState('');
     const [rawJson, setRawJson] = useState<PromptStructure | null>(null);
@@ -34,10 +34,12 @@ export default function QuickMode({ onGenerate, onEditInStandard, currentData: _
             .catch(err => console.error('Env check failed', err));
     }, []);
 
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const sanitizeStructure = (obj: any): any => {
         if (!obj || typeof obj !== 'object') return obj;
 
         const forbidden = ['无', 'none', 'n/a', 'not applicable', 'null', 'undefined'];
+        // eslint-disable-next-line @typescript-eslint/no-explicit-any
         const result: any = Array.isArray(obj) ? [] : {};
 
         for (const key in obj) {
@@ -54,11 +56,22 @@ export default function QuickMode({ onGenerate, onEditInStandard, currentData: _
         return result;
     };
 
-    const handleDeepSeekGenerate = async () => {
+    const [showStyleSelector, setShowStyleSelector] = useState(false);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    const [styleOptions, setStyleOptions] = useState<any[]>([]);
+
+
+    const [customStyleInput, setCustomStyleInput] = useState('');
+
+    const handleDeepSeekGenerate = async (selectedStyleId?: string) => {
         if (!input.trim()) return;
         setLoading(true);
-        setGeneratedPrompt(''); // Clear previous result
-        setRawJson(null); // Hide previous structure
+        // Only clear previous results if this is a fresh start, not a style selection continuation
+        if (!selectedStyleId) {
+            setGeneratedPrompt('');
+            setRawJson(null);
+        }
+        setShowStyleSelector(false); // Close selector if open
 
         try {
             const res = await fetch('/api/generate', {
@@ -68,16 +81,32 @@ export default function QuickMode({ onGenerate, onEditInStandard, currentData: _
                     userInput: input,
                     mode: 'quick',
                     language,
-                    apiKey: clientKey // Pass client key if available
+                    apiKey: clientKey, // Pass client key if available
+                    style: selectedStyleId,
+                    customStyle: selectedStyleId === 'custom' ? customStyleInput : undefined
                 })
             });
 
+            // Handle Non-OK responses
             if (!res.ok) {
                 const err = await res.json();
                 alert('Error: ' + (err.error || 'Failed to fetch'));
                 return;
             }
 
+            // Check content type to see if it's JSON (action required) or Stream (generation)
+            const contentType = res.headers.get('content-type');
+            if (contentType && contentType.includes('application/json')) {
+                const data = await res.json();
+                if (data.action === 'style_selection_required') {
+                    setStyleOptions(data.options);
+                    setShowStyleSelector(true);
+                    setLoading(false);
+                    return;
+                }
+            }
+
+            // Standard Streaming Handling
             const reader = res.body?.getReader();
             if (!reader) return;
 
@@ -108,7 +137,7 @@ export default function QuickMode({ onGenerate, onEditInStandard, currentData: _
                     data = sanitizeStructure(data);
 
                     // Client-side prompt assembly
-                    const assembledPrompt = buildPrompt(data, 'jimeng', language); // Defaulting to MJ or making it generic
+                    const assembledPrompt = buildPrompt(data, 'jimeng', language);
 
                     setGeneratedPrompt(assembledPrompt);
                     setRawJson(data);
@@ -119,12 +148,11 @@ export default function QuickMode({ onGenerate, onEditInStandard, currentData: _
                     });
 
                 } else {
-                    throw new Error('No JSON found in response');
+                    // Start of non-JSON response might mean it's just text (rare with our prompt)
+                    // But we keep accumulated text
                 }
             } catch (e) {
                 console.error("Failed to parse JSON structure:", e);
-                console.log("Raw output:", accumulated);
-                alert("Failed to parse AI response. Please try again.");
             }
         } catch (e) {
             console.error(e);
@@ -135,8 +163,8 @@ export default function QuickMode({ onGenerate, onEditInStandard, currentData: _
     };
 
     return (
-        <div className="space-y-6">
-            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm">
+        <div className="space-y-6 relative">
+            <div className="bg-white p-6 rounded-xl border border-slate-200 shadow-sm relative z-10">
                 <label className="block text-sm font-medium mb-2 text-slate-700">
                     {UI_LABELS.quickModeInputLabel[language]}
                 </label>
@@ -149,7 +177,98 @@ export default function QuickMode({ onGenerate, onEditInStandard, currentData: _
                     className="w-full bg-white border border-slate-200 rounded-lg p-4 text-sm text-slate-800 focus:ring-2 focus:ring-blue-500 focus:border-transparent transition-all resize-none placeholder:text-slate-400"
                 />
 
-                {/* DeepSeek Config Panel */}
+                {showStyleSelector && (
+                    <div className="mt-4 border-t border-slate-100 pt-4 animate-in fade-in slide-in-from-top-2">
+                        <div className="mb-4">
+                            <h3 className="text-sm font-bold text-slate-700">{UI_LABELS.styleSelection.title[language]}</h3>
+                            <p className="text-xs text-slate-500 mt-1">
+                                {UI_LABELS.styleSelection.description[language]}
+                            </p>
+                        </div>
+
+
+                        {/* Suggested Styles Section */}
+                        {styleOptions.some((s: any) => s.isSuggested) && (
+                            <div className="mb-6">
+                                <h4 className="text-xs font-semibold text-blue-600 uppercase tracking-wider mb-3">
+                                    {language === 'chinese' ? 'AI 推荐风格' : 'AI Recommended Styles'}
+                                </h4>
+                                <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                                    {styleOptions.filter((s: any) => s.isSuggested).map((style) => (
+                                        <button
+                                            key={style.id}
+                                            onClick={() => handleDeepSeekGenerate(style.id)}
+                                            className="p-3 text-left border rounded-lg border-blue-100 bg-blue-50/50 hover:border-blue-500 hover:bg-blue-50 transition-all group hover:shadow-sm"
+                                        >
+                                            <div className="font-semibold text-sm text-slate-800 group-hover:text-blue-700 mb-0.5">
+                                                {style.name}
+                                            </div>
+                                            <div className="text-xs text-slate-500 leading-relaxed line-clamp-2">
+                                                {style.description}
+                                            </div>
+                                        </button>
+                                    ))}
+                                </div>
+                            </div>
+                        )}
+
+                        {/* Standard Styles Section */}
+                        <div>
+                            <h4 className="text-xs font-semibold text-slate-500 uppercase tracking-wider mb-3">
+                                {language === 'chinese' ? '预设风格' : 'Preset Styles'}
+                            </h4>
+                            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-3">
+                                {styleOptions.filter((s: any) => !s.isSuggested).map((style) => (
+                                    <button
+                                        key={style.id}
+                                        onClick={() => handleDeepSeekGenerate(style.id)}
+                                        className="p-3 text-left border rounded-lg hover:border-slate-400 hover:bg-slate-50 transition-all group bg-white hover:shadow-sm"
+                                    >
+                                        <div className="font-semibold text-sm text-slate-800 group-hover:text-slate-900 mb-0.5">
+                                            {/* @ts-expect-error - Dynamic access to strict typed i18n object */}
+                                            {UI_LABELS.styleNames[style.id]?.[language] || style.name}
+                                        </div>
+                                        <div className="text-xs text-slate-500 leading-relaxed line-clamp-2">
+                                            {/* @ts-expect-error - Dynamic access to strict typed i18n object */}
+                                            {UI_LABELS.styleDescriptions[style.id]?.[language] || style.description}
+                                        </div>
+                                    </button>
+                                ))}
+                                {/* Custom Style Input - Inline */}
+                                <div
+                                    className="p-3 text-left border rounded-lg border-dashed border-purple-200 bg-purple-50 hover:bg-purple-100/50 transition-all group relative flex flex-col gap-2"
+                                >
+                                    <div className="font-semibold text-sm text-slate-800">
+                                        {UI_LABELS.styleNames.custom[language]}
+                                    </div>
+                                    <div className="flex gap-2 h-full">
+                                        <textarea
+                                            value={customStyleInput}
+                                            onChange={(e) => setCustomStyleInput(e.target.value)}
+                                            placeholder={UI_LABELS.customStyle.placeholder[language]}
+                                            className="flex-1 bg-white border border-purple-200 rounded px-2 py-1 text-xs text-slate-800 focus:ring-1 focus:ring-purple-500 focus:border-transparent transition-all resize-none placeholder:text-slate-400"
+                                            onKeyDown={(e) => {
+                                                if (e.key === 'Enter' && !e.shiftKey) {
+                                                    e.preventDefault();
+                                                    if (customStyleInput.trim()) {
+                                                        handleDeepSeekGenerate('custom');
+                                                    }
+                                                }
+                                            }}
+                                        />
+                                        <button
+                                            onClick={() => handleDeepSeekGenerate('custom')}
+                                            disabled={!customStyleInput.trim()}
+                                            className="px-3 py-1 text-xs font-medium bg-purple-600 text-white hover:bg-purple-500 rounded transition-colors shadow-sm disabled:opacity-50 disabled:cursor-not-allowed self-end h-full"
+                                        >
+                                            <ArrowRight className="w-4 h-4" />
+                                        </button>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                )}
                 {hasServerKey === false && (
                     <div className="mt-4">
                         <DeepSeekConfig onKeyChange={setClientKey} language={language} />
@@ -162,7 +281,7 @@ export default function QuickMode({ onGenerate, onEditInStandard, currentData: _
                     </div>
 
                     <button
-                        onClick={handleDeepSeekGenerate}
+                        onClick={() => handleDeepSeekGenerate()}
                         disabled={loading || !input.trim() || (hasServerKey === false && !clientKey)}
                         className="flex items-center gap-2 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-500 hover:to-purple-500 text-white px-6 py-2.5 rounded-lg font-medium transition-all disabled:opacity-50 disabled:cursor-not-allowed shadow-lg shadow-blue-900/20"
                     >
@@ -171,6 +290,12 @@ export default function QuickMode({ onGenerate, onEditInStandard, currentData: _
                     </button>
                 </div>
             </div>
+
+
+
+            {/* Custom Input Modal Overlay (Replaces standard selector content if active) */}
+
+
 
             {generatedPrompt && (
                 <div className="space-y-4">

@@ -16,7 +16,7 @@ const DEFAULT_STRUCTURE: PromptStructure = {
     environment: '',
     theme: '',
     style: '',
-    modifiers: { lighting: '', colorMood: '', composition: '', visualLayers: '', details: '', effects: '', typography: '' },
+    modifiers: { lighting: '', colorMood: '', composition: '', visualLayers: '', details: '', effects: '', typography: '', artisticReference: '' },
     technical: { quality: '', aspectRatio: '', model: '' },
     negative: ''
 };

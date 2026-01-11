@@ -112,6 +112,58 @@ export const UI_LABELS = {
         connectionSuccess: { chinese: '连接成功！', english: 'Connection successful!' },
         connectionFailed: { chinese: '连接失败', english: 'Connection failed' },
         networkError: { chinese: '网络错误', english: 'Network error occurred' }
+    },
+    styleSelection: {
+        title: { chinese: '选择一种风格', english: 'Select a Style' },
+        description: {
+            chinese: '我们无法自动确定最匹配的风格。请手动选择一种：',
+            english: 'We could not automatically detect the style. Please choose one:'
+        },
+        cancel: { chinese: '取消', english: 'Cancel' }
+    },
+    styleNames: {
+        general: { chinese: '通用 / 综合', english: 'General / Universal' },
+        photography: { chinese: '摄影', english: 'Photography' },
+        'traditional-art': { chinese: '传统艺术', english: 'Traditional Art' },
+        'digital-art': { chinese: '数字艺术 & 3D', english: 'Digital Art & 3D' },
+        anime: { chinese: '动漫 & 插画', english: 'Anime & Illustration' },
+        custom: { chinese: '自定义风格', english: 'Custom Style' }
+    },
+    styleDescriptions: {
+        general: {
+            chinese: '适用于大多数主题，平衡细节与创造力。',
+            english: 'Versatile style suitable for most subjects, balancing detail and creativity.'
+        },
+        photography: {
+            chinese: '写实摄影、电影镜头、纪录片及商业拍摄。',
+            english: 'Realistic photography, cinematic shots, and documentation.'
+        },
+        'traditional-art': {
+            chinese: '油画、素描、水彩、水墨及古典艺术风格。',
+            english: 'Oil painting, sketch, watercolor, and ink styles.'
+        },
+        'digital-art': {
+            chinese: '赛博朋克、3D 渲染、故障艺术及现代设计。',
+            english: 'Cyberpunk, 3D Renders, Glitch Art, and Modern Design.'
+        },
+        anime: {
+            chinese: '日系动漫、漫画、卡通及赛璐珞风格。',
+            english: 'Japanese Anime, Manga, Cartoons, and Cel-Shaded styles.'
+        },
+        custom: {
+            chinese: '自定义风格',
+            english: 'Custom Style'
+        }
+    },
+    customStyle: {
+        placeholder: {
+            chinese: '输入风格名称（例如：像素艺术、极简主义...）',
+            english: 'Enter style name (e.g. Pixel Art, Minimalism...)'
+        },
+        description: {
+            chinese: '输入您想要的任何视觉风格。',
+            english: 'Enter any visual style you desire.'
+        }
     }
 };
 
@@ -132,7 +184,8 @@ export const FIELD_LABELS = {
     quality: { chinese: '质量', english: 'Quality' },
     aspectRatio: { chinese: '画面比例', english: 'Aspect Ratio' },
     model: { chinese: '模型版本', english: 'Model Version' },
-    camera: { chinese: '镜头/相机', english: 'Camera' }
+    camera: { chinese: '镜头/相机', english: 'Camera' },
+    artisticReference: { chinese: '艺术参考', english: 'Artistic Reference' }
 };
 
 export const PLACEHOLDERS = {
@@ -152,7 +205,8 @@ export const PLACEHOLDERS = {
     visualLayers: { chinese: '例如：前景花朵虚化，主体在中景，远处有连绵雪山', english: 'E.g., Blurred flowers in foreground, subject in middle ground, snowy mountains in distance' },
     typography: { chinese: '例如：大写标题，无衬线字体，文字紧凑排布在底部', english: 'E.g., Uppercase title, sans-serif font, text tightly arranged at the bottom' },
     details: { chinese: '例如：眼神接触, 互动手势', english: 'E.g., Eye contact, interactive gestures' },
-    negative: { chinese: '模糊, 扭曲, 坏手...', english: 'Blurry, distorted, bad hands...' }
+    negative: { chinese: '模糊, 扭曲, 坏手...', english: 'Blurry, distorted, bad hands...' },
+    artisticReference: { chinese: '例如：梵高，赛博朋克 2077，吉卜力工作室', english: 'E.g., Van Gogh, Cyberpunk 2077, Studio Ghibli' }
 };
 
 export const CATEGORY_NAMES = {

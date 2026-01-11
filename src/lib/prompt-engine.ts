@@ -20,6 +20,7 @@ export function buildPrompt(data: PromptStructure, platform: Platform, language:
 
     const modifiers = [
         data.modifiers?.lighting,
+        data.modifiers?.artisticReference,
         data.modifiers?.colorMood,
         data.modifiers?.composition,
         data.modifiers?.visualLayers,

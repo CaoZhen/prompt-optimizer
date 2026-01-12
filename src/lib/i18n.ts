@@ -71,6 +71,10 @@ export const UI_LABELS = {
         chinese: 'JSON 结构',
         english: 'Structure (JSON)'
     },
+    toonStructure: {
+        chinese: 'TOON 结构',
+        english: 'Structure (TOON)'
+    },
     targetModel: {
         chinese: '选择目标模型',
         english: 'Target Model'

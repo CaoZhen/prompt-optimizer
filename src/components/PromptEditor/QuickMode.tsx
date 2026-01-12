@@ -1,4 +1,5 @@
 import { useState, useEffect } from 'react';
+import { encode } from '@toon-format/toon';
 import { PromptStructure } from '@/lib/types';
 import { buildPrompt } from '@/lib/prompt-engine';
 import { Loader2, Wand2, ArrowRight, Copy, Check } from 'lucide-react';
@@ -19,6 +20,8 @@ export default function QuickMode({ onGenerate, onEditInStandard, language, inpu
     const [loading, setLoading] = useState(false);
     const [generatedPrompt, setGeneratedPrompt] = useState('');
     const [rawJson, setRawJson] = useState<PromptStructure | null>(null);
+    const [viewFormat, setViewFormat] = useState<'json' | 'toon'>('toon');
+    const [toonString, setToonString] = useState('');
     const [isCopied, setIsCopied] = useState(false);
     const [isJsonCopied, setIsJsonCopied] = useState(false);
 
@@ -141,6 +144,21 @@ export default function QuickMode({ onGenerate, onEditInStandard, language, inpu
 
                     setGeneratedPrompt(assembledPrompt);
                     setRawJson(data);
+
+                    // Generate TOON representation safely
+                    try {
+                        const ts = encode(data, {
+                            replacer: (key, value) => {
+                                if (typeof value === 'string' && value.trim() === '') return undefined;
+                                return value;
+                            }
+                        });
+                        setToonString(ts);
+                    } catch (e) {
+                        console.error("TOON conversion failed:", e);
+                        setToonString('');
+                    }
+
                     onGenerate({
                         ...data,
                         originalInput: input,
@@ -356,14 +374,37 @@ export default function QuickMode({ onGenerate, onEditInStandard, language, inpu
                         </div>
                     </div>
 
-                    {/* JSON Display Panel */}
+                    {/* JSON/TOON Display Panel */}
                     {rawJson && (
                         <div className="bg-slate-900 p-6 rounded-xl border border-slate-800 shadow-sm animate-in fade-in slide-in-from-bottom-6">
                             <h3 className="text-xs font-medium text-slate-400 mb-3 uppercase tracking-wider flex items-center justify-between">
-                                <span>{UI_LABELS.structureJson[language]}</span>
+                                <div className="flex bg-slate-800 rounded-lg p-0.5 border border-slate-700/50">
+                                    <button
+                                        onClick={() => setViewFormat('json')}
+                                        className={`px-3 py-1 rounded-md text-[10px] font-bold transition-all ${viewFormat === 'json'
+                                            ? 'bg-slate-600 text-white shadow-sm'
+                                            : 'text-slate-400 hover:text-slate-300'
+                                            }`}
+                                    >
+                                        JSON
+                                    </button>
+                                    <button
+                                        onClick={() => setViewFormat('toon')}
+                                        className={`px-3 py-1 rounded-md text-[10px] font-bold transition-all ${viewFormat === 'toon'
+                                            ? 'bg-emerald-600 text-white shadow-sm'
+                                            : 'text-slate-400 hover:text-slate-300'
+                                            }`}
+                                    >
+                                        TOON
+                                    </button>
+                                </div>
+
                                 <button
                                     onClick={() => {
-                                        navigator.clipboard.writeText(JSON.stringify(rawJson, null, 2));
+                                        const textToCopy = viewFormat === 'json'
+                                            ? JSON.stringify(rawJson, null, 2)
+                                            : toonString;
+                                        navigator.clipboard.writeText(textToCopy);
                                         setIsJsonCopied(true);
                                         setTimeout(() => setIsJsonCopied(false), 2000);
                                     }}
@@ -374,10 +415,16 @@ export default function QuickMode({ onGenerate, onEditInStandard, language, inpu
                                     <span className="text-xs">{isJsonCopied ? UI_LABELS.copied[language] : UI_LABELS.copy[language]}</span>
                                 </button>
                             </h3>
-                            <div className="bg-slate-950 rounded-lg p-4 border border-slate-800 relative group">
-                                <pre className="text-xs font-mono text-emerald-400 whitespace-pre-wrap break-words leading-relaxed">
-                                    {JSON.stringify(rawJson, null, 2)}
-                                </pre>
+                            <div className="bg-slate-950 rounded-lg p-4 border border-slate-800 relative group overflow-hidden">
+                                {viewFormat === 'json' ? (
+                                    <pre className="text-xs font-mono text-blue-400 whitespace-pre-wrap break-words leading-relaxed">
+                                        {JSON.stringify(rawJson, null, 2)}
+                                    </pre>
+                                ) : (
+                                    <pre className="text-xs font-mono text-emerald-400 whitespace-pre-wrap break-words leading-relaxed">
+                                        {toonString || <span className="text-slate-600 italic">Formatting...</span>}
+                                    </pre>
+                                )}
                             </div>
                         </div>
                     )}

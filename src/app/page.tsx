@@ -104,7 +104,7 @@ export default function Home() {
 
                         {/* Settings Dropdown */}
                         {showSettings && (
-                            <>
+                            <div className="relative">
                                 <div className="fixed inset-0 z-10" onClick={() => setShowSettings(false)} />
                                 <div className="absolute right-0 top-full mt-2 w-48 bg-white rounded-xl border border-slate-200 shadow-xl z-20 animate-in fade-in zoom-in-95 origin-top-right overflow-hidden">
                                     <div className="p-2 border-b border-slate-100 bg-slate-50/50">
@@ -127,14 +127,14 @@ export default function Home() {
                                         </button>
                                     </div>
                                 </div>
-                            </>
+                            </div>
                         )}
                     </div>
 
 
                     {/* Dropdown Menu */}
                     {showTemplates && (
-                        <>
+                        <div className="relative">
                             {/* Backdrop to close */}
                             <div className="fixed inset-0 z-10" onClick={() => setShowTemplates(false)} />
 
@@ -161,7 +161,7 @@ export default function Home() {
                                     </div>
                                 ))}
                             </div>
-                        </>
+                        </div>
                     )}
                 </div>
             </div>
